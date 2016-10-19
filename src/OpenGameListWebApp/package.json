@@ -12,10 +12,9 @@
     "@angular/platform-browser-dynamic": "~2.1.0",
     "@angular/router": "~3.1.0",
     "@angular/upgrade": "~2.1.0",
-
     "core-js": "^2.4.1",
     "reflect-metadata": "^0.1.8",
-    "rxjs": "5.0.0-rc.1",
+    "rxjs": "5.0.0-beta.12",
     "systemjs": "^0.19.39",
     "typings": "^1.4.0",
     "zone.js": "^0.6.25"
@@ -27,9 +26,10 @@
     "gulp-sourcemaps": "^2.1.1",
     "gulp-typescript": "^3.0.2",
     "gulp-uglify": "^2.0.0",
-    "typescript": "^2.0.3"
+    "typescript": "^2.0.3",
+    "typings": "^1.4.0"
   },
   "scripts": {
-    
+    "postinstall": "typings install dt~core-js --global"
   }
 }
