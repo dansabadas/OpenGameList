@@ -2,3 +2,9 @@ src/OpenGameListWebApp/node_modules/
 src/OpenGameListWebApp/bin/
 src/OpenGameListWebApp/obj/
 .vs/OpenGameList/v14/.suo
+src/OpenGameListWebApp/wwwroot/js/rxjs/
+src/OpenGameListWebApp/wwwroot/js/@angular/
+src/OpenGameListWebApp/wwwroot/app/*.js
+src/OpenGameListWebApp/wwwroot/js/
+src/OpenGameListWebApp/Scripts/app/*.js
+src/OpenGameListWebApp/wwwroot/app/*.map
