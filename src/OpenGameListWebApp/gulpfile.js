@@ -34,11 +34,11 @@ var destPaths = {
 // Compile, minify and create sourcemaps all TypeScript files and place them to wwwroot/app, together with their js.map files.
 gulp.task('app', ['app_clean'], function () {
     return gulp.src(srcPaths.app)
-        .pipe(gp_sourcemaps.init())
-        .pipe(gp_typescript(require('./tsconfig.json').compilerOptions))
-        .pipe(gp_uglify({ mangle: false }))
-		.pipe(gp_sourcemaps.write('/'))
-        .pipe(gulp.dest(destPaths.app));
+      .pipe(gp_sourcemaps.init())
+      .pipe(gp_typescript(require('./tsconfig.json').compilerOptions))
+      .pipe(gp_uglify({ mangle: false }))
+		  .pipe(gp_sourcemaps.write('/'))
+      .pipe(gulp.dest(destPaths.app));
 });
 
 // Delete wwwroot/app contents
