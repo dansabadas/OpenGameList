@@ -59,8 +59,9 @@ gulp.task('js', function () {
 
 // Delete wwwroot/js contents
 gulp.task('js_clean', function () {
-    return gulp.src(destPaths.js + "*", { read: false })
-    .pipe(gp_clean({ force: true }));
+    return gulp
+        .src(destPaths.js + "*", { read: false })
+        .pipe(gp_clean({ force: true }));
 });
 
 // Watch specified files and define what to do upon file changes
