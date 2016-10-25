@@ -1,4 +1,4 @@
-﻿(function (global) {
+﻿(function () {
     // map tells the System loader where to look for things
     var map = {
         'app': 'app', // our application files
@@ -20,7 +20,9 @@
       'http',
       'platform-browser',
       'platform-browser-dynamic',
-      'upgrade'
+      'upgrade',
+      'forms',
+      'router'
     ];
 
     function packIndex(pkgName) {
@@ -38,4 +40,4 @@
         packages: packages
     }
     System.config(config);
-})(this);
+})();

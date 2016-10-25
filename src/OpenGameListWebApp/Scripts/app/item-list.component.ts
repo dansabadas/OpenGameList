@@ -13,8 +13,8 @@ import {ItemService} from "./item.service";
                 <span>{{item.Title}}</span>
             </li>
         </ul>
-        
-    `,
+        <item-detail *ngIf="selectedItem" [item]="selectedItem"></item-detail>
+    `,  // the [item] thing above can be declared like this because the DetailComponent at its turn declared inside a  @Input("item") alias for the property
     styles: [`
         ul.items li { 
             cursor: pointer;
@@ -25,9 +25,8 @@ import {ItemService} from "./item.service";
     `]
 })
 
-    //<item-detail *ngIf="selectedItem" [item]="selectedItem"></item-detail>
 export class ItemListComponent implements OnInit {
-    @Input() class: string;
+    @Input("cls") class: string;
     title: string;
     selectedItem: Item;
     items: Item[];
@@ -36,32 +35,32 @@ export class ItemListComponent implements OnInit {
     constructor(private itemService: ItemService) { }
 
     ngOnInit() {
-        this.itemService.getLatest().subscribe(
-            items => this.items = items,
-            error => this.errorMessage = error
-        );
-        //console.log("ItemListComponent instantiated with the following type: " + this.class);
-        //var s;
-        //switch (this.class) {
-        //    case "latest":
-        //    default:
-        //        this.title = "Latest Items";
-        //        s = this.itemService.getLatest();
-        //        break;
-        //    case "most-viewed":
-        //        this.title = "Most Viewed Items";
-        //        s = this.itemService.getMostViewed();
-        //        break;
-        //    case "random":
-        //        this.title = "Random Items";
-        //        s = this.itemService.getRandom();
-        //        break;
-        //}
-
-        //s.subscribe(
+        //this.itemService.getLatest().subscribe(
         //    items => this.items = items,
         //    error => this.errorMessage = error
         //);
+        console.log(`ItemListComponent instantiated with the following type: ${this.class}`);
+        let s: any;
+        switch (this.class) {
+            case "latest":
+            default:
+                this.title = "Latest Items";
+                s = this.itemService.getLatest();
+                break;
+            case "most-viewed":
+                this.title = "Most Viewed Items";
+                s = this.itemService.getMostViewed();
+                break;
+            case "random":
+                this.title = "Random Items";
+                s = this.itemService.getRandom();
+                break;
+        }
+
+        s.subscribe(
+            items => this.items = items,
+            error => this.errorMessage = error
+        );
     }
 
     onSelect(item: Item) {

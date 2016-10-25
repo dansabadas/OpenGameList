@@ -9,7 +9,7 @@ import {Item} from "./item";
           <ul>
               <li>
                   <label>Title:</label>
-                  <input [(ngModel)]="item.Title" placeholder="Insert the title..."/>
+                  <input [ngModel]="item.Title" placeholder="Insert the title..."/>
               </li>
               <li>
                   <label>Description:</label>
