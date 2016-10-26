@@ -25,8 +25,7 @@ System.register(["@angular/core"], function(exports_1, context_1) {
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: "opengamelist",
-                        template: "\n        <h1>{{title}}</h1>\n        <item-list cls=\"latest\"></item-list>\n        <item-list cls=\"most-viewed\"></item-list>\n        <item-list cls=\"random\"></item-list>\n    ",
-                        styles: ["\n        item-list {\n            min-width: 332px;\n            border: 1px solid #aaaaaa;\n            display: inline-block;\n            margin: 0 10px;\n            padding: 10px;\n        }\n        item-list.latest {\n            background-color: #f9f9f9;\n        }\n        item-list.most-viewed {\n            background-color: #f0f0f0;\n        }\n        item-list.random {\n            background-color: #e9e9e9;\n        }\n    "]
+                        template: "\n        <h1>{{title}}</h1>\n            <div class=\"menu\">\n                <a class=\"home\" [routerLink]=\"['']\">Home</a>\n                | <a class=\"about\" [routerLink]=\"['about']\">About</a>\n                | <a class=\"login\" [routerLink]=\"['login']\">Login</a>\n            </div>\n        <router-outlet></router-outlet>\n    "
                     }), 
                     __metadata('design:paramtypes', [])
                 ], AppComponent);

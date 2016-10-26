@@ -1,5 +1,7 @@
-﻿import {Component, Input} from "@angular/core";
+﻿import {Component, OnInit} from "@angular/core";
+import {Router, ActivatedRoute} from "@angular/router";
 import {Item} from "./item";
+import {ItemService} from "./item.service";
 
 @Component({
     selector: "item-detail",
@@ -17,7 +19,7 @@ import {Item} from "./item";
               </li>
           </ul>
         </div>
-    `,
+    `,//[ngModel] - means only one-way communication, banana-in-a-box [(ngModel)] means 2-way comm
     styles: [`
         .item-details {
             margin: 5px;
@@ -36,5 +38,20 @@ import {Item} from "./item";
 })
 
 export class ItemDetailComponent {
-    @Input("item") item: Item;
+    //@Input("item") item: Item;
+    item: Item;
+
+    constructor(private itemService: ItemService, private router: Router, private activatedRoute: ActivatedRoute) {
+    }
+
+    ngOnInit() {
+        var id = +this.activatedRoute.snapshot.params['id'];
+        if (id) {
+            this.itemService.get(id).subscribe(item => this.item = item);
+            console.log(this.item);
+        } else {
+            console.log("Invalid id: routing back home...");
+            this.router.navigate([""]);
+        }
+    }
 }

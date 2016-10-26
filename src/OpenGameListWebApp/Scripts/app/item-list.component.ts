@@ -1,4 +1,5 @@
 ﻿import {Component, Input, OnInit} from "@angular/core";
+import {Router} from "@angular/router";
 import {Item} from "./item";
 import {ItemService} from "./item.service";
 
@@ -13,8 +14,9 @@ import {ItemService} from "./item.service";
                 <span>{{item.Title}}</span>
             </li>
         </ul>
-        <item-detail *ngIf="selectedItem" [item]="selectedItem"></item-detail>
-    `,  // the [item] thing above can be declared like this because the DetailComponent at its turn declared inside a  @Input("item") alias for the property
+    `,
+    // <item-detail *ngIf="selectedItem" [item]="selectedItem"></item-detail>
+    // the [item] thing above can be declared like this because the DetailComponent at its turn declared inside a  @Input("item") alias for the property
     styles: [`
         ul.items li { 
             cursor: pointer;
@@ -32,7 +34,7 @@ export class ItemListComponent implements OnInit {
     items: Item[];
     errorMessage: string;
 
-    constructor(private itemService: ItemService) { }
+    constructor(private itemService: ItemService, private router: Router) { }
 
     ngOnInit() {
         //this.itemService.getLatest().subscribe(
@@ -65,6 +67,7 @@ export class ItemListComponent implements OnInit {
 
     onSelect(item: Item) {
         this.selectedItem = item;
-        console.log(`item with Id ${this.selectedItem.Id} has been selected.`);
+        console.log(`item with Id ${this.selectedItem.Id} has been clicked: loading ItemDetailComponent...`);
+        this.router.navigate(["item", this.selectedItem.Id]);
     }
 }
