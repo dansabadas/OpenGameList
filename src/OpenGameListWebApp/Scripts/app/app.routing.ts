@@ -3,7 +3,8 @@ import {Routes, RouterModule} from "@angular/router";
 
 import {AboutComponent} from "./about.component";
 import {HomeComponent} from "./home.component";
-import {ItemDetailComponent} from "./item-detail.component";
+import {ItemDetailViewComponent} from "./item-detail-view.component";
+import {ItemDetailEditComponent} from "./item-detail-edit.component";
 import {LoginComponent} from "./login.component";
 import {PageNotFoundComponent} from "./page-not-found.component";
 
@@ -25,9 +26,13 @@ const appRoutes: Routes = [
         component: LoginComponent
     },
     {
-        path: "item/:id",
-        component: ItemDetailComponent
+        path: "item/edit/:id",
+        component: ItemDetailEditComponent
     },
+    {
+        path: "item/view/:id",
+        component: ItemDetailViewComponent
+    }
     //{
     //    path: '**',
     //    component: PageNotFoundComponent
