@@ -8,3 +8,4 @@ src/OpenGameListWebApp/wwwroot/app/*.js
 src/OpenGameListWebApp/wwwroot/js/
 src/OpenGameListWebApp/Scripts/app/*.js
 src/OpenGameListWebApp/wwwroot/app/*.map
+/src/OpenGameListWebApp/wwwroot/css
