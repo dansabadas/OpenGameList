@@ -3,10 +3,19 @@
 @Component({
     selector: "home",
     template: `
-        <h2>{{title}}</h2>
-        <item-list cls="latest"></item-list>
-        <item-list cls="most-viewed"></item-list>
-        <item-list cls="random"></item-list>
+<h2>
+    A non-comprehensive directory of open-source video games
+    available on the web
+</h2>
+<div class="col-md-4">
+    <item-list cls="latest"></item-list>
+</div>
+<div class="col-md-4">
+    <item-list cls="most-viewed"></item-list>
+</div>
+<div class="col-md-4">
+    <item-list cls="random"></item-list>
+</div>
     `,
     styles: []
 })

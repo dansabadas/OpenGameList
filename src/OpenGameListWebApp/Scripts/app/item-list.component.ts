@@ -11,7 +11,8 @@ import {ItemService} from "./item.service";
             <li *ngFor="let item of items" 
                 [class.selected]="item === selectedItem"
                 (click)="onSelect(item)">
-                <span>{{item.Title}}</span>
+                <div class="title">{{item.Title}}</div>
+                <div class="description">{{item.Description}}</div>
             </li>
         </ul>
     `,
