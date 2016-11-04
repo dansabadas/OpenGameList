@@ -55,16 +55,18 @@ export class ItemService {
 
     // calls the [PUT] /api/items/{id} Web API method to update an existing item.
     update(item: Item) {
-      var url = this.baseUrl + item.Id;
-      return this.http.put(url, JSON.stringify(item), this.getRequestOptions())
+        const url = this.baseUrl + item.Id;
+        return this.http
+        .put(url, JSON.stringify(item), this.getRequestOptions())
         .map(response => response.json())
         .catch(this.handleError);
     }
 
     // calls the [DELETE] /api/items/{id} Web API method to delete the item with the given id.
     delete(id: number) {
-      var url = this.baseUrl + id;
-      return this.http.delete(url)
+        const url = this.baseUrl + id;
+        return this.http
+        .delete(url)
         .catch(this.handleError);
     }
 
