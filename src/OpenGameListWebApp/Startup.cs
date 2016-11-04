@@ -10,6 +10,8 @@ using OpenGameListWebApp.Data;
 using OpenGameListWebApp.Data.Items;
 using OpenGameListWebApp.ViewModels;
 using System;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using OpenGameListWebApp.Data.Users;
 
 namespace OpenGameListWebApp
 {
@@ -30,14 +32,24 @@ namespace OpenGameListWebApp
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
     {
-      // Add framework services.
-      services.AddMvc();
+        // Add framework services.
+        services.AddMvc();
 
-      // Add EntityFramework's Identity support.
-      services.AddEntityFramework();
+        // Add EntityFramework's Identity support.
+        services.AddEntityFramework();
 
-      //// Add ApplicationDbContext.
-      services.AddDbContext<ApplicationDbContext>(options =>
+        // Add Identity Services & Stores
+        services
+            .AddIdentity<ApplicationUser, IdentityRole>(config => {
+                config.User.RequireUniqueEmail = true;
+                config.Password.RequireNonAlphanumeric = false;
+                config.Cookies.ApplicationCookie.AutomaticChallenge = false;
+            })
+            .AddEntityFrameworkStores<ApplicationDbContext>()
+            .AddDefaultTokenProviders();
+
+            //// Add ApplicationDbContext.
+            services.AddDbContext<ApplicationDbContext>(options =>
           options.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"]));
 
       // Add ApplicationDbContext's DbSeeder
