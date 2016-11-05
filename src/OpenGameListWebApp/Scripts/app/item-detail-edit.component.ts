@@ -1,7 +1,8 @@
 ﻿import {Component, OnInit} from "@angular/core";
 import {Router, ActivatedRoute} from "@angular/router";
 import {Item} from "./item";
-import {ItemService} from "./item.service";
+import { ItemService } from "./item.service";
+import { AuthService } from "./auth.service";
 
 @Component({
     selector: "item-detail-edit",
@@ -70,24 +71,28 @@ export class ItemDetailEditComponent {
 
     constructor(private itemService: ItemService,
         private router: Router,
-        private activatedRoute: ActivatedRoute) {
+        private activatedRoute: ActivatedRoute,
+        private authService: AuthService) {
     }
 
     ngOnInit() {
-        var id = +this.activatedRoute.snapshot.params["id"];
-        if (id) {
-            this.itemService.get(id).subscribe(
-                item => this.item = item
-            );
-        }
-        else if (id === 0) {
-            console.log("id is 0: adding a new item...");
-            this.item = new Item(0, "New Item", null);
-        }
-        else {
-            console.log("Invalid id: routing back to home...");
-            this.router.navigate([""]);
-        }
+      if (!this.authService.isLoggedIn()) {
+        this.router.navigate([""]);
+      }
+      var id = +this.activatedRoute.snapshot.params["id"];
+      if (id) {
+        this.itemService.get(id).subscribe(
+          item => this.item = item
+        );
+      }
+      else if (id === 0) {
+        console.log("id is 0: adding a new item...");
+        this.item = new Item(0, "New Item", null);
+      }
+      else {
+        console.log("Invalid id: routing back to home...");
+        this.router.navigate([""]);
+      }
     }
 
     onInsert(item: Item) {
