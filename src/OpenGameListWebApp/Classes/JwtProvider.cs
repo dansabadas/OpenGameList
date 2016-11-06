@@ -26,7 +26,6 @@ namespace OpenGameListWebApp.Classes
         // EF and Identity members, available through DI
         private ApplicationDbContext DbContext;
         private UserManager<ApplicationUser> UserManager;
-        private SignInManager<ApplicationUser> SignInManager;
         #endregion Private Members
 
         #region Static Members
@@ -40,8 +39,7 @@ namespace OpenGameListWebApp.Classes
         public JwtProvider(
             RequestDelegate next,
             ApplicationDbContext dbContext,
-            UserManager<ApplicationUser> userManager,
-            SignInManager<ApplicationUser> signInManager)
+            UserManager<ApplicationUser> userManager)
         {
             _next = next;
 
@@ -52,7 +50,6 @@ namespace OpenGameListWebApp.Classes
             // Instantiate through Dependency Injection
             DbContext = dbContext;
             UserManager = userManager;
-            SignInManager = signInManager;
         }
         #endregion Constructor
 

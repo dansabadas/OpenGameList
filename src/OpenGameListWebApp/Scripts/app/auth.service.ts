@@ -33,8 +33,7 @@ export class AuthService {
             }))
             .map(response => {
                 var auth = response.json();
-                console.log("The following auth JSON object has been received:");
-                console.log(auth);
+                console.log("The following auth JSON object has been received:" + auth);
                 this.setAuth(auth);
                 return auth;
             });

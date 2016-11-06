@@ -50,12 +50,13 @@ export class LoginComponent {
     //return;
     var username = this.loginForm.value.username;
     var password = this.loginForm.value.password;
-    this.authService.login(username, password)
+    this.authService
+      .login(username, password)
       .subscribe((data) => {
         // login successful
         this.loginError = false;
         var auth = this.authService.getAuth();
-        alert("Our Token is: " + auth.access_token);
+        console.log("Our Token is: " + auth.access_token);
         this.router.navigate([""]);
       },
       (err) => {

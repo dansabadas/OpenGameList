@@ -3,27 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using OpenGameListWebApp.ViewModels;
-using Newtonsoft.Json;
 using OpenGameListWebApp.Data;
 using Nelibur.ObjectMapper;
 using OpenGameListWebApp.Data.Items;
 using Microsoft.AspNetCore.Authorization;
-using System.Security.Claims;
 
 namespace OpenGameListWebApp.Controllers
 {
-  [Route("api/[controller]")]
-  public class ItemsController : Controller
+  public class ItemsController : BaseController
   {
-    #region Private Fields
-    private ApplicationDbContext DbContext;
-    #endregion Private Fields
-
     #region Constructor
-    public ItemsController(ApplicationDbContext context)
+    public ItemsController(ApplicationDbContext context) : base(context)
     {
-      // Dependency Injetion
-      DbContext = context;
     }
     #endregion Constructor
 
@@ -143,7 +134,7 @@ namespace OpenGameListWebApp.Controllers
 
         // TODO: replace the following with the current user's id when authentication will be available.
         //item.UserId = DbContext.Users.Where(u => u.UserName == "Admin").FirstOrDefault().Id;
-        item.UserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+        item.UserId = GetCurrentUserId();
 
         // add the new item
         DbContext.Items.Add(item);
@@ -173,7 +164,7 @@ namespace OpenGameListWebApp.Controllers
         if (item != null)
         {
           // handle the update (on per-property basis)
-          item.UserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+          item.UserId = GetCurrentUserId();
           item.Description = ivm.Description;
           item.Flags = ivm.Flags;
           item.Notes = ivm.Notes;
@@ -237,14 +228,6 @@ namespace OpenGameListWebApp.Controllers
       foreach (var i in items) lst.Add(TinyMapper.Map<ItemViewModel>(i));
       return lst;
     }
-
-    /// <summary>
-    /// Returns a suitable JsonSerializerSettings object that can be used to generate the JsonResult return value for this Controller's methods.
-    /// </summary>
-    private static JsonSerializerSettings DefaultJsonSettings => new JsonSerializerSettings
-    {
-      Formatting = Formatting.Indented
-    };
 
     /// <summary>
     /// Returns the default number of items to retrieve when using the parameterless overloads of the API methods retrieving item lists.
