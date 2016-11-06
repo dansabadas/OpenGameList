@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Identity;
 using OpenGameListWebApp.Data;
-using OpenGameListWebApp.Data.Users;
 using Newtonsoft.Json;
 
 namespace OpenGameListWebApp.Controllers

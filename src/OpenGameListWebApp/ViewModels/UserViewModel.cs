@@ -1,10 +1,8 @@
-﻿using System;
-using System.ComponentModel;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace OpenGameListWebApp.ViewModels
 {
-    [JsonObject(MemberSerialization.OptOut)]
+  [JsonObject(MemberSerialization.OptOut)]
     public class UserViewModel
     {
         #region Constructor

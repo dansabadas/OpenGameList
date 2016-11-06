@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
-using OpenGameListWebApp.Classes;
 using OpenGameListWebApp.Data;
 using OpenGameListWebApp.Data.Users;
 using OpenGameListWebApp.ViewModels;
@@ -20,9 +17,7 @@ namespace OpenGameListWebApp.Controllers
     #endregion Private Fields
 
     #region Constructor
-    public AccountsController(
-            ApplicationDbContext context,
-            UserManager<ApplicationUser> userManager) : base(context)
+    public AccountsController(ApplicationDbContext context, UserManager<ApplicationUser> userManager) : base(context)
     {
       UserManager = userManager;
     }
