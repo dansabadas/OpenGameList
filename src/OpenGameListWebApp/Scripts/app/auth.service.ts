@@ -1,7 +1,8 @@
 ﻿import {Injectable, EventEmitter} from "@angular/core";
 import {Http, Headers, Response, RequestOptions} from "@angular/http";
 import {Observable} from "rxjs/Observable";
-import {AuthHttp} from "./auth.http";
+import { AuthHttp } from "./auth.http";
+import { User } from "./user";
 
 @Injectable()
 export class AuthService {
@@ -46,13 +47,15 @@ export class AuthService {
 
     // Converts a Json object to urlencoded format
     toUrlEncodedString(data: any) {
-        var body = "";
-        for (var key in data) {
-            if (body.length) {
-                body += "&";
+        let body = "";
+        for (let key in data) {
+            if (data.hasOwnProperty(key)) {
+                if (body.length) {
+                    body += "&";
+                }
+                body += key + "=";
+                body += encodeURIComponent(data[key]);
             }
-            body += key + "=";
-            body += encodeURIComponent(data[key]);
         }
         return body;
     }
@@ -82,5 +85,34 @@ export class AuthService {
     // Returns TRUE if the user is logged in, FALSE otherwise.
     isLoggedIn(): boolean {
         return localStorage.getItem(this.authKey) != null;
+    }
+
+    get() {
+        return this.http.get("api/Accounts")
+            .map(response => <User>response.json());
+    }
+
+    add(user: User) {
+        return this.http.post(
+            "api/Accounts",
+            JSON.stringify(user),
+            new RequestOptions({
+                headers: new Headers({
+                    "Content-Type": "application/json"
+                })
+            }))
+            .map(response => response.json());
+    }
+
+    update(user: User) {
+        return this.http.put(
+            "api/Accounts",
+            JSON.stringify(user),
+            new RequestOptions({
+                headers: new Headers({
+                    "Content-Type": "application/json"
+                })
+            }))
+            .map(response => response.json());
     }
 }

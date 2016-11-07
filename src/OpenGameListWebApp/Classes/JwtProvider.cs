@@ -24,7 +24,6 @@ namespace OpenGameListWebApp.Classes
         private SigningCredentials SigningCredentials;
 
         // EF and Identity members, available through DI
-        private ApplicationDbContext DbContext;
         private UserManager<ApplicationUser> UserManager;
         #endregion Private Members
 
@@ -38,7 +37,6 @@ namespace OpenGameListWebApp.Classes
         #region Constructor
         public JwtProvider(
             RequestDelegate next,
-            ApplicationDbContext dbContext,
             UserManager<ApplicationUser> userManager)
         {
             _next = next;
@@ -48,7 +46,6 @@ namespace OpenGameListWebApp.Classes
             SigningCredentials = new SigningCredentials(SecurityKey, SecurityAlgorithms.HmacSha256);
 
             // Instantiate through Dependency Injection
-            DbContext = dbContext;
             UserManager = userManager;
         }
         #endregion Constructor

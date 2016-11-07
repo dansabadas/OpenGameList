@@ -207,3 +207,40 @@ form.item-detail-edit {
         }
     }
 }
+
+.user-container {
+    max-width: 500px;
+    padding: 15px;
+    .form-user {
+        margin-left: 20px;
+        input {
+            margin-bottom: 10px;
+            margin-right: 5px;
+            max-width: 330px;
+            display: inline;
+        }
+        .validator-label {
+            &.valid { 
+                color: green;
+            }
+            &.invalid { 
+                color: red;
+            }
+        }
+    }
+}
+
+.register-link {
+    cursor:pointer;
+    font-size: 0.8em;
+    margin: 10px 0;
+}
+
+@media (min-width: 768px) {
+    .nav.navbar-nav {
+        float: none;
+        li.right {
+            float: right;
+        }
+    }
+}

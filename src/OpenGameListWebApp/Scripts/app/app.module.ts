@@ -17,7 +17,8 @@ import {PageNotFoundComponent} from "./page-not-found.component";
 import { AppRouting } from "./app.routing";
 import { AuthHttp } from "./auth.http";
 import {AuthService} from "./auth.service";
-import {ItemService} from "./item.service";
+import { ItemService } from "./item.service";
+import { UserEditComponent } from "./user-edit.component";
 
 @NgModule({
     // directives, components, and pipes
@@ -29,7 +30,8 @@ import {ItemService} from "./item.service";
         ItemDetailViewComponent,
         ItemDetailEditComponent,
         LoginComponent,
-        PageNotFoundComponent
+        PageNotFoundComponent,
+        UserEditComponent
     ],
     // modules
     imports: [
